@@ -12,5 +12,4 @@ block content
         each url, index in urls
             tr
                 td= url.long_url
-                td: #[a(href="#{url.short_url}" target="_blank") #{url.short_url}]
-    
+                td: a(href="#{url.short_url}" target="_blank") #{url.short_url}
