@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    script.
+        $("#list-menu").addClass("active");
+    h1 Shortened URL's
+    table.table.table-hover
+        thead
+            tr
+                th Long URL
+                th Short URL
+        each url, index in urls
+            tr
+                td= url.long_url
+                td: #[a(href="#{url.short_url}" target="_blank") #{url.short_url}]
+    
