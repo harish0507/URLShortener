@@ -41,11 +41,12 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var url = req.body.url;
   googleUrl.shorten(url, function(err, shortUrl) {
-    if (err) {
+    if(err) {
       console.error("Failed to shorten URL");
     } else {
       var data = { long_url: url, short_url: shortUrl };
       URLShortenerEmitter.emit('mysqlInsert', data);
+      console.log("URL shortening successful")
       res.render('index', {
         url: url,
         short_url: shortUrl
@@ -57,7 +58,6 @@ router.post('/', function(req, res, next) {
 // handling get request for url list page
 router.get('/list', function(req, res, next) {
   connection.query('SELECT long_url, short_url FROM urls', function(err, rows, fields) {
-    console.log(rows);
     if(err) {
       console.error("Failed to get data from database");
     } else {
