@@ -8,3 +8,5 @@ block content
     input(type="submit", class="btn btn-primary margin", value="Shorten")
   if url
     h4 The shortened url for #{url} is: #[a(href="#{short_url}" target="_blank") #{short_url}]
+  else if error
+    h4.text-danger= error

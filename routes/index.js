@@ -43,6 +43,7 @@ router.post('/', function(req, res, next) {
   googleUrl.shorten(url, function(err, shortUrl) {
     if(err) {
       console.error("Failed to shorten URL");
+      res.render('index', { error: "Failed to shorten URL"});
     } else {
       var data = { long_url: url, short_url: shortUrl };
       URLShortenerEmitter.emit('mysqlInsert', data);
